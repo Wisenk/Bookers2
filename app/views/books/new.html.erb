@@ -1,0 +1,27 @@
+<h1>User info</h1>
+<%= form_with model: @user do |form| %>
+  <%= form.file_field :profile_image %>
+  <h2>name</h2>
+  <%= form.text_field :name %>
+  <h2>introduction</h2>
+  <%= form.text_area :introduction %>
+<% end %>
+
+<h1>New book</h1>
+<%= form_with model: @book do |form| %>
+  <h2>Title</h2>
+  <%= form.text_field :title %>
+  <h2>Opinion</h2>
+  <%= form.text_area :body %>
+<%= form.submit "Create Book" %>
+<% end %>
+
+<h1>Books</h1>
+<h2>Title</h2>
+<h2>Opinion</h2>
+<% @books.each do |book| %>
+  <p>by <%= book.user.name %></p>
+  <h2><%= book.title %></h2>
+  <p><%= book.body %></p>
+<% end %>
+
