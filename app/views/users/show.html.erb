@@ -1,0 +1,15 @@
+<div>
+  <h3><%= @user.name %></h3>
+  <%= image_tag @user.get_profile_image(100, 100) %>
+</div>
+
+<!-- ユーザーの投稿一覧 -->
+
+<h2>投稿一覧</h2>
+<% @user.books.each do |book| %>
+  <div>
+    <h3><%= book.title %></h3>
+    <p><%= book.body %></p>
+    <p>by <%= book.user.name %></p>
+  </div>
+<% end %>

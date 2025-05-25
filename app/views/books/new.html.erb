@@ -2,9 +2,9 @@
 <%= form_with model: @user do |form| %>
   <%= form.file_field :profile_image %>
   <h2>name</h2>
-  <%= form.text_field :name %>
+  <%= current_user.name %>
   <h2>introduction</h2>
-  <%= form.text_area :introduction %>
+
 <% end %>
 
 <h1>New book</h1>

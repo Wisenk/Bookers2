@@ -16,7 +16,11 @@
       <li>
         <%= link_to 'books', new_book_path %>
       </li>
-      
+
+      <li>
+        <%= link_to 'my page', user_path(current_user) %>
+      </li>
+
       <li>
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
       </li>
