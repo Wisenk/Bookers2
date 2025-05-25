@@ -20,7 +20,6 @@
 <h2>Title</h2>
 <h2>Opinion</h2>
 <% @books.each do |book| %>
-  <p>by <%= book.user.name %></p>
   <h2><%= book.title %></h2>
   <p><%= book.body %></p>
 <% end %>
