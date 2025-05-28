@@ -1,0 +1,44 @@
+<%if user_signed_in? %>
+  <h4>Signed in successfully</h4>
+<% else %>
+  redirect_to sign_in_path
+<% end %>
+
+<h2>User info</h2>
+<% if current_user.profile_image.attached? %>
+  <%= image_tag current_user.profile_image, size: "100x100" %>
+<% elsif current_user.profile_image.attached? == false %>
+  <%= image_tag "no_image.jpg", size: "100x100" %>
+<% end %>
+
+
+
+######## 途中 ########
+
+
+
+<h2>Name</h2>
+<p><%= current_user.name %></p>
+
+<h2>Introduction</h2>
+<p><%= current_user.introduction %></p>
+
+
+<h1>New book</h1>
+<%= form_with model: @book do |form| %>
+  <h2>Title</h2>
+  <%= form.text_field :title %>
+  <h2>Opinion</h2>
+  <%= form.text_area :body %>
+<%= form.submit "Create Book" %>
+<% end %>
+
+<h1>Books</h1>
+<h2>Title</h2>
+<h2>Opinion</h2>
+<% @books.each do |book| %>
+  <h2><%= book.title %></h2>
+  <p><%= book.body %></p>
+<% end %>
+
+

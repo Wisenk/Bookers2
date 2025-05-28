@@ -6,7 +6,21 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
 
   has_one_attached :profile_image
-  has_many :books, dependent: :destroy
+
+  validates :name, presence: true, length: { minimum: 2, maximum: 20 }
+  validates :introduction, length: { maximum: 50 }
+
+
+
+  private
+
+  def name_length
+    if name.present? && (name.length > 20)
+      errors.add(:name, "name is too long (maximum is 20 characters)")
+    elsif name.present? && (name.length < 2)
+      errors.add(:name, "name is too short (minimum is 2 characters)")
+    end
+  end
 
   def get_profile_image
     unless profile_image.attached?
@@ -16,4 +30,11 @@ class User < ApplicationRecord
     profile_image.variant(resize_to_limit: [100, 100]).processed
   end
 
+  def introduction_length
+    if introduction.present? && introduction.length > 50
+      errors.add(:introduction, "introduction is too long (maximum is 50 characters)")
+    end
+  end
+  
 end
+
