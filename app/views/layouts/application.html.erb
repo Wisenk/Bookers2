@@ -53,6 +53,12 @@
 
 
   <main>
+  <% flash.each do |key, message| %>
+    <div class="alert alert-<%= key %>">
+      <%= message %>
+    </div>
+  <% end %>
+  
   <div class="container px-5 px-sm-0">
   
   </main>
