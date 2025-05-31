@@ -19,19 +19,29 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user), alert: "You can only edit your own profile."
     end
   end
-
-def update
-  @user = User.find(params[:id])
-  if @user.update(user_params)
-    flash[:notice] = "Profile updated successfully."
-    redirect_to root_path
-  else
-    flash.now[:alert] = "Failed to update profile."
-    render :edit
+      
+  def update
+    @user = User.find(params[:id])
+    if @user == current_user
+      if @user.update(user_params)
+        redirect_to user_path(@user), notice: "You have updated user successfully."
+      else
+        render :edit, status: :unprocessable_entity
+      end
+      else
+        redirect_to user_path(current_user), alert: "You can only update your own profile."
+      end
   end
-end
 
   def view
+    @user = User.find(params[:id])
+    @books = @user.books
+    @book = Book.new
+    if @user == current_user
+      render :view
+    else
+      redirect_to user_path(@user), alert: "You can only view your own profile."
+    end
   end
 end
 
