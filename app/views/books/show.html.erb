@@ -1,0 +1,25 @@
+<%= render 'list' %>
+
+<div class="col-md-8 offset-md-1">
+    <h2>Book Detail</h2>
+    <table class="table table-hover table-inverse">
+      <tr>
+        <td>
+        <a href="<%= user_path(@book.user) %>">
+        <%= image_tag @book.user.profile_image.attached? ? @book.user.profile_image : "no_image.jpg", size: "100x100" %>
+        <br>
+        <%= @book.user.name %>
+        </a>
+        </td>
+
+        <td><%= link_to @book.title, book_path(@book) %></td>
+        <td><%= @book.body %></td>
+        <% if @book.user == current_user %>
+        <td><%= link_to "Edit", edit_book_path(@book), class: "btn btn-primary" %></td>
+        <td><%= link_to "Delete", book_path(@book), method: :delete, data: { confirm: "本当に消しますか?" }, class: "btn btn-danger" %></td>  
+      </tr>
+    </table>
+    <% end %>
+  </div>
+</div>
+</div>

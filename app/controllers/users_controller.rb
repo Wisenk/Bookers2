@@ -1,14 +1,16 @@
 class UsersController < ApplicationController
+
+
   def show
-    @user = User.find(params[:id])
-    @books = @user.books
+    @books = Book.all
     @book = Book.new
-    @new_book = Book.new
-    if @user == current_user
-      render :view
-    else
-      render :show
-    end
+  end
+  
+  def index
+    @users = User.all
+    @user = current_user
+    @books = Book.all
+    @book = Book.new
   end
 
   def edit
@@ -33,20 +35,10 @@ class UsersController < ApplicationController
       end
   end
 
-  def view
-    @user = User.find(params[:id])
-    @books = @user.books
-    @book = Book.new
-    if @user == current_user
-      render :view
-    else
-      redirect_to user_path(@user), alert: "You can only view your own profile."
-    end
-  end
-end
 
 private
 
 def user_params
   params.require(:user).permit(:name, :profile_image, :introduction)
+end
 end
