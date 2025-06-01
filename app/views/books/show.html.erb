@@ -8,7 +8,7 @@
         <a href="<%= user_path(@book.user) %>">
         <%= image_tag @book.user.profile_image.attached? ? @book.user.profile_image : "no_image.jpg", size: "100x100" %>
         <br>
-        <%= @book.user.name %>
+        <%= link_to @book.user.name, user_path(@book.user) %>
         </a>
         </td>
 

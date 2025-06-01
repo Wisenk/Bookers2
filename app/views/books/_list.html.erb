@@ -2,17 +2,18 @@
   <div class="row">
     <div class="col-md-3">
       <h2>User Info</h2>
-      <%= image_tag(current_user.profile_image.attached? ? current_user.profile_image : "no_image.jpg", size: "100x100") %>
+      <%= image_tag(@user.profile_image.attached? ? @user.profile_image : "no_image.jpg", size: "100x100") %>
 
       <table class="table mt-3">
         <tbody>
           <tr>
             <th>Name</th>
-            <td><%= current_user.name %></td>
+            <td>
+            <%= @user.name %></td>
           </tr>
           <tr>
             <th>Introduction</th>
-            <td><%= current_user.introduction %></td>
+            <td><%= @user.introduction %></td>
           </tr>
         </tbody>
       </table>
