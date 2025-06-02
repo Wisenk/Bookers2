@@ -36,6 +36,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     if @book.user != current_user
       redirect_to books_path
+      flash[:alert] = "You are not authorized to edit this book."
     end
   end
 
