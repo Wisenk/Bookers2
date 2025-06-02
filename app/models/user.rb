@@ -14,14 +14,6 @@ class User < ApplicationRecord
 
   private
 
-  def name_length
-    if name.present? && (name.length > 20)
-      errors.add(:name, "name is too long (maximum is 20 characters)")
-    elsif name.present? && (name.length < 2)
-      errors.add(:name, "name is too short (minimum is 2 characters)")
-    end
-  end
-
   def get_profile_image
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -30,11 +22,6 @@ class User < ApplicationRecord
     profile_image.variant(resize_to_limit: [100, 100]).processed
   end
 
-  def introduction_length
-    if introduction.present? && introduction.length > 50
-      errors.add(:introduction, "introduction is too long (maximum is 50 characters)")
-    end
-  end
   
 end
 

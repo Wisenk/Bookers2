@@ -15,12 +15,17 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    if @user != current_user
+      redirect_to user_path(current_user)
+      flash[:alert] = "You are not authorized to edit this user."
+    end
   end
       
   def update
     @user = User.find(params[:id])
       if @user.update(user_params)
-        redirect_to user_path(@user), notice: "You have updated user successfully."
+        redirect_to user_path(@user)
+        flash[:notice] = "You have updated user successfully."
       else
         render :edit
     end

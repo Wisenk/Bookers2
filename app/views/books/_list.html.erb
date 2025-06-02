@@ -1,5 +1,5 @@
 <% if @book.errors.any? %>
-<p><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</p>
+<h4><%= pluralize(@book.errors.count, "error") %> prohibited this obj from being saved:</h4>
 <ul>
 <% @book.errors.full_messages.each do |message| %>
   <li><%= message %></li>
