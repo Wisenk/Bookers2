@@ -5,7 +5,6 @@
   <li><%= message %></li>
 <% end %>
 </ul>
-</div>
 <% end %>
 
 
@@ -13,9 +12,8 @@
   <div class="row">
     <div class="col-md-3">
       <h2>User Info</h2>
-      <%= image_tag(@user.profile_image.attached? ? @user.profile_image : "no_image.jpg", size: "100x100") %>
-
-      <table class="table mt-3">
+        <%= image_tag(@user.profile_image.attached? ? @user.profile_image : "no_image.jpg", size: "150x150", class: "img-fluid rounded-circle") %>
+        <table class="table mt-3">
         <tbody>
           <tr>
             <th>Name</th>
@@ -29,11 +27,17 @@
         </tbody>
       </table>
 
+      <% if @user == current_user %>
       <%= link_to edit_user_path(current_user), class: "btn btn-outline-secondary btn-block mb-3" do %>
-        <i class="fas fa-user-cog"></i>
+        <i class="fas fa-user-cog"></i> 
       <% end %>
+    <% else %>
+      <%= link_to edit_user_path(current_user), class: "btn btn-outline-secondary btn-block mb-3" do %>
+        <i class="fas fa-user-cog"></i> 
+      <% end %>
+    <% end %>
 
-      <h2>New Book</h2>
+      <h2>New book</h2>
       <%= form_with model: Book.new, local: true do |f| %>
         <div class="form-group">
           <%= f.label :title %>
@@ -47,7 +51,7 @@
           <%= f.submit "Create Book", class: "btn btn-success" %>
         </div>
       <% end %>
-    </div> 
+  </div>
 
 
     

@@ -17,8 +17,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user != current_user
       redirect_to user_path(current_user)
-      flash[:alert] = "You are not authorized to edit this user."
-    end
   end
       
   def update
