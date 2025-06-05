@@ -1,5 +1,15 @@
 <div class= "container">
   <div class= "row">
+
+      <% if @book.errors.any? %>
+      <h4><%= pluralize(@book.errors.count, "error") %> prohibited this obj from being saved:</h4>
+      <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+      <% end %>
+
     <div class= "col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h1>Editing Book</h1>
       <%= form_with model: @book, local: true do |f| %>
